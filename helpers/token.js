@@ -1,6 +1,6 @@
 let jwt = require('jsonwebtoken');
-// let secretKey = SECRET_KEY;
 let db = require("../models");
+require('dotenv').config()
 
 let verifyToken = (req, res, next) => {
   jwt.verify(req.headers.token, process.env.SECRET_KEY, function(err, decoded) {

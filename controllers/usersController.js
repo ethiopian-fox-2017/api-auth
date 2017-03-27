@@ -1,7 +1,7 @@
 let db = require("../models");
 let passwordHash = require("password-hash");
 let jwt = require('jsonwebtoken');
-// let secretKey = SECRET_KEY;
+require('dotenv').config()
 
 let getAllUser = (req, res) => {
   if (req.decoded.role == "admin") {
@@ -74,7 +74,7 @@ let updateUser = (req, res) => {
   if (req.decoded.role == "admin" || req.decoded.role == "guest") {
     db.User
       .update(
-        {nama: req.body.nama, email: req.body.email},
+        {nama: req.body.nama, email: req.body.email, password: passwordHash.generate(req.body.password), role: req.body.role },
         {where: {id: req.params.id}}
       )
       .then((data) => {
