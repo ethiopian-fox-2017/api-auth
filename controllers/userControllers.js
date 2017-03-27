@@ -1,7 +1,8 @@
 'use strict'
 var db = require('../models').Userauth;
 var jwt = require('jsonwebtoken');
-
+var pwh = require('password-hash');
+require('dotenv').config()
 
 //get all users
 let getUsers = function(req, res) {
@@ -26,21 +27,31 @@ let getUser = function(req, res) {
 }
 
 let postUser = function(req, res) {
-  db.create(req.body)
-         .then((data) => {
-           res.send(data);
-         })
-         .catch((err) => {
-           res.send(err.message);
-         })
+  if(req.body.username != null && req.body.password != null && req.body.username != "" && req.body.password != "") {
+    let obj = {
+      username: req.body.username,
+      password: pwh.generate(req.body.password),
+      role: req.body.role
+    }
+    db.create(obj)
+           .then((data) => {
+             res.send(data);
+           })
+           .catch((err) => {
+             res.send(err.message);
+           })
+  } else {
+    res.send('Data cannot be empty')
+  }
+
 }
 
 
 let signin = function(req, res) {
   db.findOne({where:{username:req.body.username}})
     .then((data) => {
-      if(data.password == req.body.password) {
-        let token = jwt.sign({username: data.username, role: data.role}, 'rahasia')
+      if(pwh.verify(req.body.password,data.password)) {
+        let token = jwt.sign({username: data.username, role: data.role}, process.env.SECRET_KEY)
         res.send(token)
       } else {
         res.send('Wrong Password')

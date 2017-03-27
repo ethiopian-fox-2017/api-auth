@@ -1,7 +1,8 @@
 var jwt = require('jsonwebtoken');
+require('dotenv').config()
 
 let adminOnly = function(req ,res, next) {
-jwt.verify(req.headers.token, 'rahasia', function (err, decoded) {
+jwt.verify(req.headers.token, process.env.SECRET_KEY , function (err, decoded) {
     if(decoded) {
       if(decoded.role == 'admin') {
         next();
@@ -16,7 +17,7 @@ jwt.verify(req.headers.token, 'rahasia', function (err, decoded) {
 }
 
 let allUser = function(req ,res, next) {
-jwt.verify(req.headers.token, 'rahasia', function (err, decoded) {
+jwt.verify(req.headers.token, process.env.SECRET_KEY, function (err, decoded) {
     if(decoded) {
       if(decoded.role == 'admin' || decoded.role == 'user') {
         next();
