@@ -68,7 +68,7 @@ var signup = function(req, res, next) {
     res.send(data)
   })
   .catch((err) => {
-    res.send(err)
+    res.send(err.message)
   })
 }
 

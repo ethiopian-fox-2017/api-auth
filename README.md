@@ -1,6 +1,6 @@
 # API-auth
 Demo app with basic REST API.
-____
+
 
 ## REST API
 List of user routes:
@@ -28,3 +28,6 @@ npm start
 ```
 
 Access the API via `http://localhost:3000/api`
+
+
+*This app has been deployed to [Heroku](https://frozen-falls-35568.herokuapp.com/)*
