@@ -29,7 +29,7 @@ user.create = function(req,res,next) {
   let password = passHash.generate(req.body.password);
   User.create({
     name: req.body.name,
-    role: "admin",
+    role : req.body.role,
     password: password
   })
   .then(data => {
