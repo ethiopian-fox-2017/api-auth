@@ -3,7 +3,6 @@ module.exports = {
   authuser:function(req,res,next){
     let token = req.headers.token;
     //console.log(token);
-    if (token) {
       jwt.verify(token,'rahasia',function(err,decode){
         if (err) {
           res.send(err)
@@ -19,15 +18,11 @@ module.exports = {
           }
         }
       })
-    } else {
-      res.send('there is no token')
-    }
   },
 
   authadmin:function(req,res,next){
     let token=req.headers.token;
     console.log(token);
-    if (token) {
        jwt.verify(token,'rahasia',function(err,decode){
          if (err){
            res.send(err)
@@ -40,9 +35,5 @@ module.exports = {
            }
          }
        })
-
-    } else {
-      res.send('there in no token')
-    }
   }
 }
