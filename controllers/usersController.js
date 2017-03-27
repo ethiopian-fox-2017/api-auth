@@ -40,7 +40,7 @@ let createUser = (req, res) => {
   if (req.decoded.role == "admin") {
     db.User
       .create(
-        {nama: req.body.nama, email: req.body.email}
+        {nama: req.body.nama, email: req.body.email, password: passwordHash.generate(req.body.password), role: req.body.role}
       )
       .then((data) => {
         res.send(data)
