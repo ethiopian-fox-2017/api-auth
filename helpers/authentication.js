@@ -1,9 +1,10 @@
 'use strict'
 
 const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
 let authenticateAdmin = function (req, res, next) {
-  jwt.verify(req.headers.token, 'secret', function(err, decoded) {
+  jwt.verify(req.headers.token, process.env.SECRET, function(err, decoded) {
     if(err) {
       res.send(err);
     }

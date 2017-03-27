@@ -3,6 +3,7 @@
 const password = require('password-hash');
 const jwt = require('jsonwebtoken');
 let models = require('../models');
+require('dotenv').config()
 
 let getAll = function (req, res, next) {
     models.Teacher.findAll()
@@ -55,7 +56,7 @@ let signIn = function (req, res, next) {
         name: instance.name,
         role: instance.role
       },
-    'secret',
+    process.env.SECRET,
     {expiresIn: '1h'});
       res.send(token);
     } else {
