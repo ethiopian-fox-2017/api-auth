@@ -26,7 +26,7 @@ module.exports = {
         res.send(data)
       })
       .catch((err)=> {
-        res.send(err)
+        res.send(err.message)
       })
   },
   getOneUser: (req, res)=> {
@@ -72,7 +72,7 @@ module.exports = {
         res.send(data)
       })
       .catch((err)=> {
-        res.send(err)
+        res.send(err.message)
       })
   },
   signInUser: (req, res)=> {
