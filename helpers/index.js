@@ -41,12 +41,33 @@ methods.signup = function (req,res) {
   })
 }
 
-methods.verify = function (req,res) {
+methods.verify = function (req,res, next) {
+  jwt.verify(req.headers.token, process.env.SECRETE, function (err, decoded) {
+    if (err) {
+      res.json({
+        err : err,
+        msg : 'must login'
+      })
+    }else{
+      if(decoded.role == 'admin' || decoded.role == 'user'){
+        next()
+      }else{
+        res.json('you dont have access')
+      }
+    }
+  })
+}
+
+methods.verifyAdmin = function (req,res, next) {
   jwt.verify(req.headers.token, process.env.SECRETE, function (err, decoded) {
     if (err) {
       res.json(err)
     }else{
-      res.json(decoded)
+      if(decoded.role == 'admin'){
+        next()
+      }else{
+        res.json('you dont have access')
+      }
     }
   })
 }

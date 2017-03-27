@@ -1,11 +1,12 @@
 var express = require('express');
 var app = express.Router()
 var User = require('../controllers/user')
+var helper = require('../helpers')
 
-app.get('/', User.getAllUser)
-app.post('/', User.create)
-app.get('/:id', User.getSingleUser)
-app.delete('/:id', User.deleteUser)
-app.put('/:id', User.updateUser)
+app.get('/', helper.verifyAdmin ,User.getAllUser)
+app.post('/', helper.verifyAdmin, User.create)
+app.get('/:id', helper.verify, User.getSingleUser)
+app.delete('/:id', helper.verifyAdmin , User.deleteUser)
+app.put('/:id', helper. verify, User.updateUser)
 
 module.exports = app
