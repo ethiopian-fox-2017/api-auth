@@ -6,7 +6,7 @@ var methods  = {};
 var token;
 require('dotenv').config();
 
-methods.login = function (req,res) {
+methods.signin = function (req,res) {
   db.User.findOne({
     where : {username : req.body.username}
   })
@@ -27,6 +27,27 @@ methods.login = function (req,res) {
   })
   .catch(function (err) {
     res.json(err)
+  })
+}
+
+methods.signup = function (req,res) {
+  console.log(req.body);
+  db.User.create(req.body)
+  .then(function (data) {
+    res.json(data)
+  })
+  .catch(function (err) {
+    res.json(err)
+  })
+}
+
+methods.verify = function (req,res) {
+  jwt.verify(req.headers.token, process.env.SECRETE, function (err, decoded) {
+    if (err) {
+      res.json(err)
+    }else{
+      res.json(decoded)
+    }
   })
 }
 
