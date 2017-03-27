@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken');
 module.exports = {
   authuser:function(req,res,next){
     let token = req.headers.token;
-    console.log(token);
+    //console.log(token);
     if (token) {
       jwt.verify(token,'rahasia',function(err,decode){
         if (err) {
@@ -21,6 +21,28 @@ module.exports = {
       })
     } else {
       res.send('there is no token')
+    }
+  },
+
+  authadmin:function(req,res,next){
+    let token=req.headers.token;
+    console.log(token);
+    if (token) {
+       jwt.verify(token,'rahasia',function(err,decode){
+         if (err){
+           res.send(err)
+         }else{
+           console.log(decode);
+           if (decode.role=='admin') {
+             next();
+           }else{
+             res.send('user not autherize')
+           }
+         }
+       })
+
+    } else {
+      res.send('there in no token')
     }
   }
 }

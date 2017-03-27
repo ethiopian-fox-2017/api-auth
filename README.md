@@ -10,6 +10,8 @@ list of user routes
 |api/user      | POST | insert new data            |
 |api/user/:id  | DELETE| DELETE DATA BASE ON ID    |
 |api/user/:id  | PUT  | update data                |
+|api/signin    | post | sign up new user           |
+|api/signup    | posy | sign up user and ger token to access data|
 
 # Usage
 npm install

@@ -23,6 +23,7 @@ module.exports = {
             username: req.body.username,
             email: req.body.email,
             salt: salt,
+            role:req.body.role,
             password: crypto.createHmac('sha256', salt)
                 .update(req.body.password).digest('hex')
         }).then(function() {

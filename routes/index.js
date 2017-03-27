@@ -8,7 +8,7 @@ var usercontroler=require('../controlers/users')
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-router.get('/signup',usercontroler.insertUser);
+router.post('/signup',usercontroler.insertUser);
 router.post('/signin',usercontroler.signIn)
 
 module.exports = router;
