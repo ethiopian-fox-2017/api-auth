@@ -4,11 +4,11 @@ var jwt = require('jsonwebtoken')
 var passwordHash = require('password-hash')
 
 var signUpUser = function(req, res) {
-  db.User.create({
-    username: req.body.username,
-    password: passwordHash.generate(req.body.password),
-    role: req.body.role
-  })
+  db.User.findOrCreate({where: {username: req.body.username},
+    defaults: {username: req.body.username,
+               password: passwordHash.generate(req.body.password),
+               role: req.body.role}}
+  )
   .then((data) => {
     res.send(data)
   })
