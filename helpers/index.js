@@ -5,6 +5,7 @@ var controller = require('../controller/users')
 var jwt = require('jsonwebtoken');
 require('dotenv').config()
 var token;
+var hash = require('password-hash');
 
 
 let login = function(req, res) {
@@ -12,7 +13,7 @@ let login = function(req, res) {
     where : {email : req.body.email}
   }).then(function(user) {
     // console.log(user);
-    if (user.password == req.body.password) {
+    if (hash.verify(req.body.password, user.password)) {
       token = jwt.sign({
         name  : user.name,
         email : user.email,

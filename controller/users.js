@@ -1,5 +1,5 @@
 let db = require('../models');
-
+let hash = require('password-hash')
 
 let getAll = function(req, res) {
   db.User.findAll().then(function(users) {
@@ -18,7 +18,12 @@ let getOne = function(req, res) {
 }
 
 let addnew = function(req, res) {
-  db.User.create(req.body).then(function(user) {
+  db.User.create({
+    name      : req.body.name,
+    email     : req.body.email,
+    role      : req.body.role,
+    password  : hash.generate(req.body.password)
+  }).then(function(user) {
     res.send(user)
   }).catch(function(err) {
     res.send(err.message)
