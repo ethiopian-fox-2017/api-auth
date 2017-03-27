@@ -1,0 +1,28 @@
+{
+  "name": "api-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobertMaulana/api-auth.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobertMaulana/api-auth/issues"
+  },
+  "homepage": "https://github.com/RobertMaulana/api-auth#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.3.0",
+    "password-hash": "^1.2.2",
+    "pg": "^6.1.5",
+    "sequelize": "^3.30.3"
+  }
+}
