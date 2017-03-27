@@ -1,7 +1,7 @@
 let db = require("../models");
 let passwordHash = require("password-hash");
 let jwt = require('jsonwebtoken');
-let secretKey = 'secret';
+// let secretKey = SECRET_KEY;
 
 let getAllUser = (req, res) => {
   if (req.decoded.role == "admin") {
@@ -109,7 +109,7 @@ let signinUser = (req, res) => {
     .then((data) => {
       let pass = passwordHash.verify(req.body.password, data.password);
       if (pass) {
-        let token = jwt.sign({ email: data.email, role: data.role }, secretKey);
+        let token = jwt.sign({ email: data.email, role: data.role }, process.env.SECRET_KEY);
         res.send(token)
       }else {
         res.send("Email or password was wrong!")

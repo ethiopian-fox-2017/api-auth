@@ -1,9 +1,9 @@
 let jwt = require('jsonwebtoken');
-let secretKey = 'secret';
+// let secretKey = SECRET_KEY;
 let db = require("../models");
 
 let verifyToken = (req, res, next) => {
-  jwt.verify(req.headers.token, secretKey, function(err, decoded) {
+  jwt.verify(req.headers.token, process.env.SECRET_KEY, function(err, decoded) {
     if (decoded) {
       req.decoded = decoded;
       next();

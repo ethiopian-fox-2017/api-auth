@@ -18,6 +18,7 @@
   "homepage": "https://github.com/RobertMaulana/api-auth#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "jsonwebtoken": "^7.3.0",
     "password-hash": "^1.2.2",
