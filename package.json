@@ -1,0 +1,29 @@
+{
+  "name": "api-auth-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfpebrizal/api-basic-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mfpebrizal/api-basic-1/issues"
+  },
+  "homepage": "https://github.com/mfpebrizal/api-basic-1#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.3.0",
+    "pg": "^6.1.5",
+    "sequelize": "^3.30.3",
+    "sequelize-cli": "^2.7.0"
+  }
+}
